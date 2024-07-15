@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Halaman utama</title>
+</head>
+
+<body>
+
+
+    <div class="prediksi-container">
+        <div class="prediksi-content">
+            <a href="{{ url_for('home') }}" class="btn">
+                <i class='bx bx-arrow-back'></i>
+            </a>
+            <div class="box-location">
+              <div class="loc">
+                <div class="dropdown" id="dropdown">
+                    <form action="/air_quality" method="post">
+                        <input type="text" name="city" class="search-input" placeholder="Cari lokasi...">
+                    </form>
+                </div>
+                <div class="live-loc" id="live-loc">
+                    <span class="loc-text">{{ city }}</span>
+                    <i class='bx bx-map'></i>
+                </div>
+            </div>
+            </div>
+            <div class="pred_box">
+                {% if air_quality %}
+                <div class="box-prediksi {{ get_quality_class(air_quality.aqi) }}">
+                    <div class="score">
+                        <p>US AQI</p>
+                        <span>{{ air_quality.aqi }}</span>
+                    </div>
+                    <div class="kategori">
+                        <p>LIVE AQI INDEX</p>
+                        <span>{{ get_quality_text(air_quality.aqi) }}</span>
+                    </div>
+                </div>
+    
+                <div class="box-overview">
+                    <p>Bagaimana kualitas udara di {{ city }}?</p>
+                    <div class="polutan">
+                        <div class="box-polutan">
+                            <p>PM10</p>
+                            <span class="concentration">{{ air_quality.pm10 }} µg/m³</span>
+                        </div>
+                        <div class="box-polutan">
+                            <p>PM2.5</p>
+                            <span class="concentration">{{ air_quality.pm25 }} µg/m³</span>
+                        </div>
+                        <div class="box-polutan">
+                            <p>O3</p>
+                            <span class="concentration">{{ air_quality.o3 }} µg/m³</span>
+                        </div>
+                        <div class="box-polutan">
+                            <p>SO2</p>
+                            <span class="concentration">{{ air_quality.so2 }} µg/m³</span>
+                        </div>
+                        <div class="box-polutan">
+                            <p>NO2</p>
+                            <span class="concentration">{{ air_quality.no2 }} µg/m³</span>
+                        </div>
+                        <div class="box-polutan">
+                            <p>CO</p>
+                            <span class="concentration">{{ air_quality.co }} µg/m³</span>
+                        </div>
+                        <div class="box-polutan">
+                            <p>S02</p>
+                            <span class="concentration">{{ air_quality.so2 }} µg/m³</span>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <p>{{ error }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

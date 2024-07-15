@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Halaman Utama</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span>AQI</span>
+            </div>
+            <div class="icons-help">
+                <i class='bx bx-help-circle' id="help-icon"></i>
+            </div>
+        </div>
+        <!-- End Header -->
+
+        <!-- Pop-up Container -->
+        <div class="popup-container" id="popup">
+            <div class="popup-content">
+                <span class="close-popup" id="close-popup">
+                    <i class='bx bx-x' ></i>
+                </span>
+                <h2>Tentang Aplikasi</h2>
+                <p>Aplikasi ini digunakan untuk memberi hasil prediksi indeks kualitas udara secara real-time berdasarkan Lokasi</p>
+                <p>Kualitas udara terbagi menjadi 4 kategori, yakni</p>
+                <br>
+                <div class="category baik satu">Baik</div>
+                <div class="category sedang">Sedang</div>
+                <div class="category tidak-sehat">Tidak sehat</div>
+                <div class="category sangat-tidak-sehat">Sangat tidak sehat</div>
+            </div>
+        </div>
+        <!-- End Pop-up Container -->
+
+        <!-- Content -->
+        <div class="content">
+            <i class='bx bx-sun' id="icon"></i>
+            <h1>Prediksi Indeks Standar <br> Pencemar Udara</h1>
+            <p>Aplikasi ini digunakan untuk memberi hasil prediksi indeks kualitas udara <br> secara real-time
+                berdasarkan
+                lokasi.</p>
+
+            <!-- Tombol untuk mulai -->
+            <a href="{{ url_for('air_quality') }}" class="button">Mulai</a>
+        </div>
+        <!-- End Content -->
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
